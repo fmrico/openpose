@@ -1034,7 +1034,9 @@ if (UNIX OR APPLE)
   if (Caffe_FOUND)
     # Install the headers
     install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/openpose DESTINATION include)
-    install(EXPORT OpenPose DESTINATION lib/OpenPose)
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/models DESTINATION share/${PROJECT_NAME})
+
+    install(EXPORT OpenPose DESTINATION lib/${PROJECT_NAME})
     if (BUILD_CAFFE)
       install(DIRECTORY ${CMAKE_BINARY_DIR}/caffe/include/caffe DESTINATION include)
       install(DIRECTORY ${CMAKE_BINARY_DIR}/caffe/lib/ DESTINATION lib)
@@ -1046,7 +1048,7 @@ if (UNIX OR APPLE)
       ${CMAKE_BINARY_DIR}/cmake/OpenPoseConfig.cmake @ONLY)
 
     install(FILES ${CMAKE_BINARY_DIR}/cmake/OpenPoseConfig.cmake
-      DESTINATION lib/OpenPose)
+      DESTINATION lib/${PROJECT_NAME})
 
     # Uninstall target
     configure_file(
